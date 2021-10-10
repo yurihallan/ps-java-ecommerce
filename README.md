@@ -157,9 +157,9 @@ Conceitualmente o projeto é formado pelas entidades Client, Product, ItemCart e
 ##  Como baixar o projeto
 ```bash
 # Clonar o repositório
-$ git clone https://github.com/heliohdd/ecommerce-spring-ionic-backend.git
+$ git clone git@github.com:yurihallan/ps-java-ecommerce.git
 # Entrar no diretório
-$ cd ecommerce-spring-ionic-backend
+$ cd ps-java-ecommerce
 # Importar projeto através do VSCODE (ou IDE de sua preferência)
 # Se precisar importar as dependências antes de executar o projeto, rode
 $ mvn clean install
