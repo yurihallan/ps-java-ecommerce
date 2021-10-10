@@ -16,16 +16,45 @@ import org.springframework.stereotype.Service;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
-
+    
     public ResponseEntity<List<Product>> getAllProducts(){
+        try {
+            
+             return new ResponseEntity<List<Product>>(productRepository.findAll(), HttpStatus.OK);
+         } catch (Exception e) {
+             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+         }
+         
+    }
+
+    public ResponseEntity<List<Product>> getAllProductsByName(){
        try {
            
-            return new ResponseEntity<List<Product>>(productRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<List<Product>>(productRepository.findByOrderByNameAsc(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         
-        
+    }
+
+    public ResponseEntity<List<Product>> getAllProductsByPrice(){
+        try {
+            
+             return new ResponseEntity<List<Product>>(productRepository.findByOrderByPriceAsc(), HttpStatus.OK);
+         } catch (Exception e) {
+             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+         }
+         
+    }
+
+    public ResponseEntity<List<Product>> getAllProductsByScore(){
+        try {
+            
+             return new ResponseEntity<List<Product>>(productRepository.findByOrderByScoreDesc(), HttpStatus.OK);
+         } catch (Exception e) {
+             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+         }
+         
     }
 
     public ResponseEntity<Product> createProduct(Product product){
@@ -41,6 +70,7 @@ public class ProductService {
             
             return new ResponseEntity<Product>( productRepository.save(product2), HttpStatus.CREATED);
         } catch (Exception e) {
+            
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
         
@@ -71,7 +101,6 @@ public class ProductService {
 
     
     public ResponseEntity<Product> updateOneProduct(Product newProduct , Long id){
-        // Optional<Product> productOptional = productRepository.findById(id);
 
         
 
@@ -85,17 +114,8 @@ public class ProductService {
                                 return new ResponseEntity<Product>(updated, HttpStatus.OK);
 
                                 }).orElse(ResponseEntity.notFound().build());
-                
-
-
-            // Product product2 = new Product();
-            // product2.setName(newProduct.getName());
-            // product2.setPrice(newProduct.getPrice());
-            // product2.setScore(newProduct.getScore());
-            // product2.setImage(newProduct.getImage());
-            // productRepository.save(product2);
-            
-
         
     }
+
+   
 }

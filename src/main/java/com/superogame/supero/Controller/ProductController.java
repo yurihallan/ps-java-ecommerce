@@ -29,6 +29,29 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @RequestMapping(value = "/ProductsByName", method = RequestMethod.GET)
+    public ResponseEntity<List<Product>> getAllProductsByName(){
+
+        return productService.getAllProductsByName();
+    }
+
+
+    @RequestMapping(value = "/ProductsByPrice", method = RequestMethod.GET)
+    public ResponseEntity<List<Product>> getAllProductsByPrice(){
+
+        return productService.getAllProductsByPrice();
+    }
+
+
+
+    @RequestMapping(value = "/ProductsByScore", method = RequestMethod.GET)
+    public ResponseEntity<List<Product>> getAllProductsByScore(){
+
+        return productService.getAllProductsByScore();
+    }
+
+
+
     @RequestMapping(value = "/Product/", method = RequestMethod.POST)
     public ResponseEntity<Product> CreateProduct(@RequestBody Product product){
 
@@ -55,4 +78,6 @@ public class ProductController {
         return productService.updateOneProduct(product, id);
     }
 
+
+ 
 }

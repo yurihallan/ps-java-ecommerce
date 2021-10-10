@@ -1,11 +1,10 @@
 package com.superogame.supero.Entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,18 +12,25 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Product {
+public class Cart {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    public long id;
 
-   public String name;
+   @NotNull
+   public Long id_client;
+   
+   @NotNull
+   public Long id_product;
+   
+   @NotNull
+   public Integer total;
+   
+   public Integer freight;
 
-   public BigDecimal price;
 
-   public short score;
 
-   public String image;
+   
 
 }
